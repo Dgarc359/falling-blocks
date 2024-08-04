@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://df7e3oriqt05j"]
+
+[ext_resource type="Script" path="res://scenes/player_character.gd" id="1_1yrkv"]
+[ext_resource type="Script" path="res://scenes/CharacterBody2D.gd" id="1_fehux"]
+[ext_resource type="Texture2D" uid="uid://drgpw4e3b7qn8" path="res://assets/sprites/player-character/Sprite-0001.bmp" id="1_r4da0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2wgui"]
+size = Vector2(14, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t43ho"]
+size = Vector2(16, 19)
+
+[node name="PlayerCharacter" type="Node2D"]
+script = ExtResource("1_1yrkv")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_fehux")
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+
+[node name="Hurtbox" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_2wgui")
+debug_color = Color(0.9982, 0, 0.148067, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_r4da0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_t43ho")
+
+[connection signal="area_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]

@@ -1,8 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsgnengsi22r6"]
+[gd_scene load_steps=5 format=3 uid="uid://dsgnengsi22r6"]
 
 [ext_resource type="Script" path="res://scripts/Node2D.gd" id="1_gf463"]
+[ext_resource type="PackedScene" uid="uid://df7e3oriqt05j" path="res://scenes/player_character.tscn" id="2_2jf73"]
+[ext_resource type="PackedScene" uid="uid://ckcjg3qewghch" path="res://scenes/death_ui.tscn" id="3_j8dex"]
+[ext_resource type="PackedScene" uid="uid://b534eb6xob4vm" path="res://scenes/victory_ui.tscn" id="4_2pq6w"]
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(146, 96)
 script = ExtResource("1_gf463")
-block_spawn_elapsed_time = 1
+width = 10
+height = 7
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("2_2jf73")]
+position = Vector2(270, 140)
+
+[node name="DeathUI" parent="." instance=ExtResource("3_j8dex")]
+visible = false
+
+[node name="VictoryUI" parent="." instance=ExtResource("4_2pq6w")]
+visible = false
+
+[connection signal="player_died" from="PlayerCharacter" to="." method="_on_player_character_player_died"]
+[connection signal="player_won" from="PlayerCharacter" to="." method="_on_player_character_player_won"]
