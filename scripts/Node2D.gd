@@ -12,8 +12,9 @@ extends Node2D
 
 @onready var time_since_last_spawn = 0
 const VICTORY_TILE = preload("res://assets/sprites/victory-tile/victory-tile.bmp")
-const wallblock_bmp = preload("res://assets/sprites/wall-block-01/wall-block-01.bmp")
-const FALLING_BLOCK_01 = preload("res://assets/sprites/falling-block-01/falling-block-01.bmp")
+const wallblock_bmp = preload("res://assets/sprites/wall-block-02/wall.png")
+const FALLING_BLOCK_01 = preload("res://assets/sprites/spikeball/spikeball.png")
+
 var player_is_dead: bool = false
 var padding = 200
 
