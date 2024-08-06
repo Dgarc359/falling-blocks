@@ -28,7 +28,7 @@ jobs:
       image: barichello/godot-ci:4.2.2
     steps:
       - name: Install curl
-        run: apt install libcurl4-openssl-dev
+        run: apt install curl
       - name: Checkout
         uses: actions/checkout@v4
         with:
