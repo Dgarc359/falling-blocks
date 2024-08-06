@@ -7,6 +7,9 @@ const DEATH_SPRITE = preload("res://assets/sprites/death-sprite/death-sprite.bmp
 @onready var character_body_2d = $"."
 @onready var character_collider = $CollisionShape2D
 @onready var player_character_root_node = $".."
+@onready var ui_manager = $Camera2D/CanvasLayer/UIManager
+
+@onready var camera_canvas_layer = $Camera2D/CanvasLayer
 
 @export var winning_conditions_are_met = false
 @export var player_is_dead: bool = false
@@ -58,6 +61,7 @@ func kill_player():
 	player_has_been_killed = true
 	player_is_dead = true
 	player_character_root_node.player_died.emit(false, true)
+	ui_manager.enable_death_ui(true)
 	#player_died.emit(false, true)
 
 func _on_area_2d_body_entered(body):
@@ -69,8 +73,12 @@ func _on_area_2d_body_entered(body):
 
 
 func player_won():
+	if player_is_dead:
+		print("player is dead and cannot win")
+		return
 	player_character_root_node.player_won.emit(false, true)
 	winning_conditions_are_met = true
+	ui_manager.enable_victory_ui(true)
 	print("player won!")
 
 func _on_area_2d_area_entered(area):

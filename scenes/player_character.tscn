@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://df7e3oriqt05j"]
+[gd_scene load_steps=7 format=3 uid="uid://df7e3oriqt05j"]
 
 [ext_resource type="Script" path="res://scenes/player_character.gd" id="1_1yrkv"]
 [ext_resource type="Script" path="res://scenes/CharacterBody2D.gd" id="1_fehux"]
 [ext_resource type="Texture2D" uid="uid://drgpw4e3b7qn8" path="res://assets/sprites/player-character/Sprite-0001.bmp" id="1_r4da0"]
+[ext_resource type="PackedScene" uid="uid://c2q1j50ekgpxg" path="res://scenes/ui_manager.tscn" id="4_a8deg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2wgui"]
 size = Vector2(14, 4)
@@ -32,6 +33,10 @@ shape = SubResource("RectangleShape2D_t43ho")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 zoom = Vector2(2.12, 2.12)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CharacterBody2D/Camera2D"]
+
+[node name="UIManager" parent="CharacterBody2D/Camera2D/CanvasLayer" instance=ExtResource("4_a8deg")]
 
 [connection signal="area_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]

@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var node_2d = $"."
+@onready var player_character = $"PlayerCharacter"
 
 @export var width: int = 5
 @export var height: int = 5
@@ -22,6 +23,7 @@ func _draw():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#pc_cam_control.add_child(death_ui)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -174,10 +176,10 @@ func create_static_2d_object(
 	#return potentially_null_area
 
 
-func draw_death_ui():
-	death_ui.z_index = 1000
-	death_ui.show()
-	pass
+#func draw_death_ui():
+	#death_ui.z_index = 1000
+	#death_ui.show()
+	#pass
 
 
 
@@ -186,16 +188,16 @@ func _on_player_character_player_died(old_value, new_value):
 	player_is_dead = new_value
 	# queue redraw with you died text
 	
-	draw_death_ui()
+	#draw_death_ui()
 	
 	pass # Replace with function body.
 
 
 func _on_player_character_player_won(old_value, new_value):
-	if new_value:
-		victory_ui.z_index = 1000
-		victory_ui.show()
-	else:
-		victory_ui.hide()
+	#if new_value:
+		#victory_ui.z_index = 1000
+		#victory_ui.show()
+	#else:
+		#victory_ui.hide()
 		#pass
 	pass # Replace with function body.

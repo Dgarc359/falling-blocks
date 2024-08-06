@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2q1j50ekgpxg"]
+
+[ext_resource type="Script" path="res://scenes/ui_manager.gd" id="1_r18sb"]
+[ext_resource type="PackedScene" uid="uid://ckcjg3qewghch" path="res://scenes/death_ui.tscn" id="1_ytjdh"]
+[ext_resource type="PackedScene" uid="uid://b534eb6xob4vm" path="res://scenes/victory_ui.tscn" id="2_7exwt"]
+
+[node name="UIManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r18sb")
+
+[node name="DeathUI" parent="." instance=ExtResource("1_ytjdh")]
+visible = false
+layout_mode = 1
+
+[node name="VictoryUI" parent="." instance=ExtResource("2_7exwt")]
+visible = false
+layout_mode = 1
