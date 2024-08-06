@@ -1,9 +1,5 @@
 name: "godot-ci export"
-on:
-  push:
-    branches:
-      # TODO: only on main once this works
-      - '*'
+on: push
 
 env:
   GODOT_VERSION: 4.2.2
