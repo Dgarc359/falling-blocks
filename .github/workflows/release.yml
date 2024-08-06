@@ -41,7 +41,7 @@ jobs:
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "HTML5" /tmp/build/web/index.html
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: web
           path: /tmp/build/web
