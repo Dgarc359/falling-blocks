@@ -54,7 +54,7 @@ jobs:
           BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
         run: |
           # for channel in $(ls tmp); do
-            ./butler push \
+            butler push \
               --fix-permissions \
               --userversion='${{ env.VERSION }}' \
               tmp/build/web/* \
