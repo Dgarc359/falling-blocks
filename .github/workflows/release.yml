@@ -45,6 +45,8 @@ jobs:
         with:
           name: web
           path: /tmp/build/web
+      - name: Install curl
+        run: sudo apt install libcurl4-openssl-dev
       - name: Install butler
         run: |
           curl -L -o butler.zip 'https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default'
