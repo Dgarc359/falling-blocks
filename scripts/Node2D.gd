@@ -8,8 +8,6 @@ extends Node2D
 @onready var death_ui = $DeathUI
 @onready var victory_ui = $VictoryUI
 
-
-
 @onready var time_since_last_spawn = 0
 const VICTORY_TILE = preload("res://assets/sprites/victory-tile/victory-tile.bmp")
 const wallblock_bmp = preload("res://assets/sprites/wall-block-02/wall.png")
