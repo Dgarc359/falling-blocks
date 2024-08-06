@@ -1,0 +1,74 @@
+name: "godot-ci export"
+on:
+  # Trigger this workflow when a tag is pushed in the format `v1.2.3`.
+  push:
+    tags:
+      # Pattern syntax: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet
+      - "v[0-9]+.[0-9]+.[0-9]+*"
+  # Trigger this workflow manually via workflow dispatch.
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version number in the format `v1.2.3`'
+        required: true
+        type: string
+
+env:
+  GODOT_VERSION: 4.2.2
+  EXPORT_NAME: xephyrhills/falling-blocks
+  PROJECT_PATH: ./
+
+jobs:
+  # Determine the version number for this workflow.
+  get-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get version number from tag
+        id: tag
+        run: echo "tag=${GITHUB_REF#refs/tags/}" >> "${GITHUB_OUTPUT}"
+    outputs:
+      # Use the input from workflow dispatch, or fall back to the git tag.
+      version: ${{ inputs.version || steps.tag.outputs.tag }}
+  export-web:
+    needs:
+      - get-version
+    env:
+      VERSION: ${{ needs.get-version.outputs.version }}
+    name: Web Export
+    runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci:4.2.2
+    steps:
+      - name: Set up butler
+        uses: jdno/setup-butler@v1
+        with:
+          version: 15.20.0
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+      - name: Web Build
+        run: |
+          mkdir -v -p /tmp/build/web
+          cd $PROJECT_PATH
+          godot --headless --verbose --export-release "HTML5" /tmp/build/web/index.html
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: web
+          path: /tmp/build/web
+      - name: Upload all packages to itch.io
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
+        run: |
+          # for channel in $(ls tmp); do
+            butler push \
+              --fix-permissions \
+              --userversion='${{ env.VERSION }}' \
+              /tmp/build/web/ \
+              '${{ env.EXPORT_NAME }}:web'
+          # done
