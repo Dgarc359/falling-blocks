@@ -27,8 +27,10 @@ jobs:
     container:
       image: barichello/godot-ci:4.2.2
     steps:
-      - name: Install curl
-        run: apt install curl
+      - name: Set up butler
+        uses: jdno/setup-butler@v1
+        with:
+          version: 15.20.0
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -47,12 +49,6 @@ jobs:
         with:
           name: web
           path: /tmp/build/web
-      - name: Install butler
-        run: |
-          curl -L -o butler.zip 'https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default'
-          unzip butler.zip
-          chmod +x butler
-          ./butler -V
       - name: Upload all packages to itch.io
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
