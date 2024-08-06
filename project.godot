@@ -13,6 +13,7 @@ config_version=5
 config/name="homework-1"
 run/main_scene="res://scenes/node_2d.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/bg_color=Color(0.620781, 0.744518, 0.936246, 1)
 config/icon="res://icon.svg"
 
 [input]
@@ -42,3 +43,7 @@ jump={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"echo":false,"script":null)
 ]
 }
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.406276, 0.259294, 0.637539, 1)
