@@ -30,5 +30,8 @@ texture = ExtResource("1_r4da0")
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_t43ho")
 
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(2.12, 2.12)
+
 [connection signal="area_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
