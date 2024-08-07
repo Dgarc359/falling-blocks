@@ -20,3 +20,5 @@ layout_mode = 1
 [node name="VictoryUI" parent="." instance=ExtResource("2_7exwt")]
 visible = false
 layout_mode = 1
+
+[connection signal="restart_button_pressed" from="DeathUI" to="." method="_on_death_ui_restart_button_pressed"]

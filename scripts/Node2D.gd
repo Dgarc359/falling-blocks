@@ -6,8 +6,6 @@ extends Node2D
 @export var width: int = 5
 @export var height: int = 5
 @export var block_spawn_elapsed_time: int = 3
-@onready var death_ui = $DeathUI
-@onready var victory_ui = $VictoryUI
 
 @onready var time_since_last_spawn = 0
 const VICTORY_TILE = preload("res://assets/sprites/victory-tile/victory-tile.bmp")
@@ -16,6 +14,7 @@ const FALLING_BLOCK_01 = preload("res://assets/sprites/spikeball/spikeball.png")
 
 var player_is_dead: bool = false
 var padding = 200
+var player_initial_starting_position: Vector2
 
 func _draw():
 	create_game_map(width, height)
@@ -23,6 +22,7 @@ func _draw():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	player_initial_starting_position = player_character.position
 	#pc_cam_control.add_child(death_ui)
 	pass # Replace with function body.
 
@@ -200,4 +200,26 @@ func _on_player_character_player_won(old_value, new_value):
 	#else:
 		#victory_ui.hide()
 		#pass
+	pass # Replace with function body.
+
+func reset_game_state():
+	# delete all rigid bodies
+	var node_children = node_2d.get_children()
+	
+	for node_child in node_children:
+		if node_child is RigidBody2D:
+			node_child.queue_free()
+	
+	# unkill player
+	player_character.unkill()
+	
+	# place player in initial starting position
+	# TODO: fix this since it's not working..
+	player_character.position = player_initial_starting_position
+	pass
+
+func _on_player_character_ui_manager_restart_button_pressed():
+	print("resetting game state")
+	reset_game_state()
+	#node_2d.restart_
 	pass # Replace with function body.

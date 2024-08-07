@@ -40,3 +40,4 @@ zoom = Vector2(0.5, 0.5)
 
 [connection signal="area_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
+[connection signal="restart_button_pressed" from="CharacterBody2D/Camera2D/CanvasLayer/UIManager" to="." method="_on_ui_manager_restart_button_pressed"]

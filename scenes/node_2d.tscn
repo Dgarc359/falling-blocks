@@ -19,3 +19,4 @@ autoplay = true
 
 [connection signal="player_died" from="PlayerCharacter" to="." method="_on_player_character_player_died"]
 [connection signal="player_won" from="PlayerCharacter" to="." method="_on_player_character_player_won"]
+[connection signal="ui_manager_restart_button_pressed" from="PlayerCharacter" to="." method="_on_player_character_ui_manager_restart_button_pressed"]

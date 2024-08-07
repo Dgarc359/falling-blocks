@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+const ALIVE_SPRITE = preload("res://assets/sprites/player-character/Sprite-0001.bmp")
 const DEATH_SPRITE = preload("res://assets/sprites/death-sprite/death-sprite.bmp")
 
 @onready var character_sprite = $Sprite2D
@@ -53,6 +53,16 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
+
+func unkill():
+	character_sprite.set_texture(ALIVE_SPRITE)
+	character_body_2d.set_collision_layer_value(1, true)
+	character_body_2d.set_collision_mask_value(1, true)
+	player_has_been_killed = false
+	player_is_dead = false
+	player_character_root_node.player_died.emit(true, false)
+	ui_manager.enable_death_ui(false)
+	#player_died.emit(false, true)
 
 func kill_player():
 	character_sprite.set_texture(DEATH_SPRITE)
