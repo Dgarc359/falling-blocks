@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cyw46pithryfy" path="res://assets/sprites/you-died-01/you-died.bmp" id="1_e73np"]
 [ext_resource type="Script" path="res://scripts/death_ui.gd" id="1_jive2"]
-[ext_resource type="Texture2D" uid="uid://cj1vti6t4aqkj" path="res://assets/sprites/restart-button/restart.png" id="2_wfhpf"]
+[ext_resource type="Texture2D" uid="uid://302aje7n7iwq" path="res://assets/sprites/restart-button/restartbutton.png" id="3_plpft"]
 
 [node name="DeathUI" type="Control"]
 layout_mode = 3
@@ -20,13 +20,13 @@ texture = ExtResource("1_e73np")
 
 [node name="RestartButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 106.0
-offset_top = 85.0
-offset_right = 146.0
-offset_bottom = 125.0
+offset_left = 93.0
+offset_top = 67.0
+offset_right = 165.0
+offset_bottom = 139.0
 focus_mode = 0
 action_mode = 0
-icon = ExtResource("2_wfhpf")
+icon = ExtResource("3_plpft")
 flat = true
 
 [connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
