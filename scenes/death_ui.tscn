@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckcjg3qewghch"]
+[gd_scene load_steps=3 format=3 uid="uid://ckcjg3qewghch"]
 
 [ext_resource type="Texture2D" uid="uid://cyw46pithryfy" path="res://assets/sprites/you-died-01/you-died.bmp" id="1_e73np"]
+[ext_resource type="Texture2D" uid="uid://cj1vti6t4aqkj" path="res://assets/sprites/restart-button/restart.png" id="2_wfhpf"]
 
 [node name="DeathUI" type="Control"]
 layout_mode = 3
@@ -11,5 +12,10 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="You-died" type="Sprite2D" parent="."]
-position = Vector2(544, 208)
+position = Vector2(134, 42)
+scale = Vector2(0.546875, 0.546875)
 texture = ExtResource("1_e73np")
+
+[node name="Restart" type="Sprite2D" parent="."]
+position = Vector2(118, 113)
+texture = ExtResource("2_wfhpf")

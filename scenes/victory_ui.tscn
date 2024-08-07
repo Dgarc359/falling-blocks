@@ -11,5 +11,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="You-won" type="Sprite2D" parent="."]
-position = Vector2(546, 245)
+position = Vector2(134, 63)
+scale = Vector2(0.4375, 0.4375)
 texture = ExtResource("1_3qede")
