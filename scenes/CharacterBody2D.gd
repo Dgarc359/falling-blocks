@@ -62,6 +62,7 @@ func unkill():
 	player_is_dead = false
 	player_character_root_node.player_died.emit(true, false)
 	ui_manager.enable_death_ui(false)
+	character_body_2d.set_position(Vector2(0, 0))
 	#player_died.emit(false, true)
 
 func kill_player():
