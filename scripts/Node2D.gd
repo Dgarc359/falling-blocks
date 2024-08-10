@@ -46,29 +46,6 @@ func spawn_falling_block(main_node, width):
 	rb2.starting_pos = start_pos
 	main_node.add_child(rb2)
 	
-	#var rb = RigidBody2D.new()
-	#rb.set_position(start_pos)
-	#
-	#var rect = RectangleShape2D.new()
-	#rect.set_size(size)
-	#
-	#var coll = CollisionShape2D.new()
-	#var coll_2 = CollisionShape2D.new()
-	#var area_2d = Area2D.new()
-	#
-	#area_2d.add_child(coll_2)
-	##area_2d.set_collision_layer_value(1, true)
-	#coll.set_shape(rect)
-	#rb.add_child(area_2d)
-	#rb.add_child(coll)
-	#
-	#var sprite = Sprite2D.new()
-	#sprite.set_texture(FALLING_BLOCK_01)
-	#rb.add_child(sprite)
-	#main_node.add_child(rb)
-	
-
-	
 	pass
 
 func _on_win_condition_area_enter():
@@ -186,30 +163,13 @@ func create_static_2d_object(
 	#return potentially_null_area
 
 
-#func draw_death_ui():
-	#death_ui.z_index = 1000
-	#death_ui.show()
-	#pass
-
-
-
 func _on_player_character_player_died(old_value, new_value):
 	print("player character died emission %s" % new_value)
 	player_is_dead = new_value
-	# queue redraw with you died text
-	
-	#draw_death_ui()
-	
 	pass # Replace with function body.
 
 
 func _on_player_character_player_won(old_value, new_value):
-	#if new_value:
-		#victory_ui.z_index = 1000
-		#victory_ui.show()
-	#else:
-		#victory_ui.hide()
-		#pass
 	pass # Replace with function body.
 
 func reset_game_state():
