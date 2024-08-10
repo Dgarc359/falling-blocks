@@ -11,7 +11,7 @@ extends Node2D
 const VICTORY_TILE = preload("res://assets/sprites/victory-tile/victory-tile.bmp")
 const wallblock_bmp = preload("res://assets/sprites/wall-block-02/wall.png")
 const FALLING_BLOCK_01 = preload("res://assets/sprites/spikeball/spikeball.png")
-
+const RIGID_2_KINEMATIC = preload("res://scenes/rigid_2_kinematic.tscn")
 var player_is_dead: bool = false
 var padding = 200
 var player_initial_starting_position: Vector2
@@ -37,27 +37,37 @@ func _process(delta):
 	pass
 
 func spawn_falling_block(main_node, width):
+	var start_pos = Vector2(padding + 32 * randi_range(1, width - 2), -50)
+	var size = Vector2(32,32)
+	
 	print("spawning falling block")
-	var rb = RigidBody2D.new()
-	rb.set_position(Vector2(padding + 32 * randi_range(1, width - 2), -50))
 	
-	var rect = RectangleShape2D.new()
-	rect.set_size(Vector2(32, 32))
+	var rb2 = RIGID_2_KINEMATIC.instantiate()
+	rb2.starting_pos = start_pos
+	main_node.add_child(rb2)
 	
-	var coll = CollisionShape2D.new()
-	var coll_2 = CollisionShape2D.new()
-	var area_2d = Area2D.new()
+	#var rb = RigidBody2D.new()
+	#rb.set_position(start_pos)
+	#
+	#var rect = RectangleShape2D.new()
+	#rect.set_size(size)
+	#
+	#var coll = CollisionShape2D.new()
+	#var coll_2 = CollisionShape2D.new()
+	#var area_2d = Area2D.new()
+	#
+	#area_2d.add_child(coll_2)
+	##area_2d.set_collision_layer_value(1, true)
+	#coll.set_shape(rect)
+	#rb.add_child(area_2d)
+	#rb.add_child(coll)
+	#
+	#var sprite = Sprite2D.new()
+	#sprite.set_texture(FALLING_BLOCK_01)
+	#rb.add_child(sprite)
+	#main_node.add_child(rb)
 	
-	area_2d.add_child(coll_2)
-	#area_2d.set_collision_layer_value(1, true)
-	coll.set_shape(rect)
-	rb.add_child(area_2d)
-	rb.add_child(coll)
-	
-	var sprite = Sprite2D.new()
-	sprite.set_texture(FALLING_BLOCK_01)
-	rb.add_child(sprite)
-	main_node.add_child(rb)
+
 	
 	pass
 
@@ -207,7 +217,8 @@ func reset_game_state():
 	var node_children = node_2d.get_children()
 	
 	for node_child in node_children:
-		if node_child is RigidBody2D:
+		var groups = node_child.get_groups()
+		if node_child is CharacterBody2D and "player" not in groups:
 			node_child.queue_free()
 	
 	# unkill player
