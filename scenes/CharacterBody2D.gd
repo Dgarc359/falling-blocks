@@ -76,13 +76,10 @@ func kill_player():
 	#player_died.emit(false, true)
 
 func _on_area_2d_body_entered(body):
-	#body.get_tags()
-	#print(body.get_groups())
 	var groups = body.get_groups()
-	if body is CharacterBody2D and "player" not in groups:
+	if body is CharacterBody2D and "deadly" in groups:
 		print("kinematic hit")
 		kill_player()
-	
 	pass # Replace with function body.
 
 

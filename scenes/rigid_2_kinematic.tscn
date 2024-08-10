@@ -4,21 +4,23 @@
 [ext_resource type="Texture2D" uid="uid://bvcm35v6iq0r3" path="res://assets/sprites/spikeball/spikeball.png" id="1_ofjf5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6rf8"]
-size = Vector2(32, 32)
+size = Vector2(30, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jnv5h"]
-size = Vector2(32, 32)
+size = Vector2(32, 34)
 
-[node name="FallingBlockKinematic" type="CharacterBody2D"]
+[node name="FallingBlockKinematic" type="CharacterBody2D" groups=["deadly"]]
 script = ExtResource("1_bcc48")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_g6rf8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ofjf5")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["deadly"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_jnv5h")
