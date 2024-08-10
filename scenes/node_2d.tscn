@@ -9,6 +9,7 @@
 script = ExtResource("1_gf463")
 width = 10
 height = 7
+blocks_per_second = 2.0
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_2jf73")]
 position = Vector2(270, 140)

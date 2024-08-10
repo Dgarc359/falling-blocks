@@ -5,7 +5,11 @@ extends Node2D
 
 @export var width: int = 5
 @export var height: int = 5
-@export var block_spawn_elapsed_time: int = 3
+
+@export var blocks_per_second: float
+
+var block_millis_timeout: float
+#var block_millis_timeout := 1 / blocks_per_second
 
 @onready var time_since_last_spawn = 0
 const VICTORY_TILE = preload("res://assets/sprites/victory-tile/victory-tile.bmp")
@@ -22,13 +26,15 @@ func _draw():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	block_millis_timeout = 1 / blocks_per_second
+	print("block millis timeout ",block_millis_timeout)
 	player_initial_starting_position = player_character.position
 	#pc_cam_control.add_child(death_ui)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if time_since_last_spawn > block_spawn_elapsed_time:
+	if time_since_last_spawn > block_millis_timeout:
 		spawn_falling_block(node_2d, width)
 		time_since_last_spawn = 0
 

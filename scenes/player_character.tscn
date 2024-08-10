@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c2q1j50ekgpxg" path="res://scenes/ui_manager.tscn" id="4_a8deg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2wgui"]
-size = Vector2(14, 4)
+size = Vector2(14, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t43ho"]
 size = Vector2(16, 19)
@@ -20,7 +20,7 @@ script = ExtResource("1_fehux")
 [node name="Area2D" type="Area2D" parent="CharacterBody2D"]
 
 [node name="Hurtbox" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
-position = Vector2(0, -9)
+position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_2wgui")
 debug_color = Color(0.9982, 0, 0.148067, 0.42)
 
